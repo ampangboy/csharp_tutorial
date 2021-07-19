@@ -2,10 +2,11 @@
 
 internal class GlazerCalc
 {
-  private static void Main()
+  private void calculateWindow()
   {
-
-
+    // this value is exceeded the byte data type limit hence
+    // it will give the compiler error
+    // byte exceededValue = 256;
     double width, height, woodLength, glassArea;
     string widthString, heightString;
 
@@ -21,5 +22,8 @@ internal class GlazerCalc
 
     Console.WriteLine("The length of the wood is " + woodLength + " feet");
     Console.WriteLine("The area of the glass is " + glassArea + " square metres");
+    Console.WriteLine(@"The quick brown fox 
+                        jumps
+                         over the lazy dog");
   }
 }
