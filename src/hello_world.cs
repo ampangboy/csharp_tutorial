@@ -2,7 +2,7 @@
 
 namespace csharp_tutorial
 {
-    class Program
+    class hello_world
     {
         static void Main(string[] args)
         {
