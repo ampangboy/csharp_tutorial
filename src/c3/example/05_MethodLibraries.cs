@@ -41,7 +41,7 @@
     return value;
   }
 
-  public static void Main()
+  public void Main()
   {
     string name;
     int age;
