@@ -21,7 +21,7 @@ internal class UsefulMethod
   private const double MAX_WIDTH = 5.0;
   private const double MIN_WIDTH = 0.5;
 
-  private static void Main()
+  private void Main()
   {
     double windowWidth;
 
