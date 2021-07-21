@@ -1,6 +1,6 @@
 ﻿class ArrayDemo
 {
-  static void Main()
+  void Main()
   {
     const int SCORE_SIZE = 1000;
     int[] scores = new int[SCORE_SIZE];

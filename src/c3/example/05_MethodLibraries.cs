@@ -1,6 +1,4 @@
-﻿using System;
-
-class MethodLibraries
+﻿class MethodLibraries
 {
   public static int ReadInt(string prompt, int min, int max)
   {
@@ -17,11 +15,11 @@ class MethodLibraries
       }
       catch
       {
-        Console.WriteLine("Invalid age value");
+        System.Console.WriteLine("Invalid age value");
         continue;
       }
 
-      if (value > min || value < max)
+      if (value > min && value < max)
       {
         break;
       }
@@ -36,23 +34,23 @@ class MethodLibraries
 
     do
     {
-      Console.WriteLine(prompt);
-      value = Console.ReadLine();
+      System.Console.WriteLine(prompt);
+      value = System.Console.ReadLine();
     } while (value == "");
 
     return value;
   }
 
-  public void Main()
+  public static void Main()
   {
     string name;
     int age;
 
 
     name = ReadString("Enter your name:");
-    Console.WriteLine("Name : {0}", name);
+    System.Console.WriteLine("Name : {0}", name);
 
     age = ReadInt("Enter your age:", 10, 70);
-    Console.WriteLine("Age : {0}", age);
+    System.Console.WriteLine("Age : {0}", age);
   }
 }
