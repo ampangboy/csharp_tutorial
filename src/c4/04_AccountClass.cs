@@ -13,6 +13,16 @@ class AccountClass
     balance = inBalance;
   }
 
+  public AccountClass(string inName, string inAddress) : this(inName, inAddress, 0)
+  {
+
+  }
+
+  public AccountClass(string inName) : this(inName, "Not Supplied", 0)
+  {
+
+  }
+
   public bool WithdrawFunds(decimal amount)
   {
     if (balance < amount)
@@ -38,7 +48,7 @@ class AccountClass
 
 class ObjectDemo
 {
-  public static void Main()
+  public void Main()
   {
     AccountClass RobsAccount;
 
