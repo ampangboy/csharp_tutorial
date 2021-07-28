@@ -1,6 +1,6 @@
 ﻿class OverloadedConstructor
 {
-  public static void Main()
+  public void Main()
   {
     const int MAX_CUST = 100;
     AccountClass[] accounts;
