@@ -9,9 +9,9 @@ public interface IAccount
 
 public class CustomerAccount : IAccount
 {
-  private decimal balance = 0;
+  protected decimal balance = 0;
 
-  public bool WithdrawFund(decimal amount)
+  public virtual bool WithdrawFund(decimal amount)
   {
     if (balance < amount)
     {

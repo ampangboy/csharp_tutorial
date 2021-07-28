@@ -1,10 +1,9 @@
 ﻿using System;
 
-public class BabyAccount : IAccount
+public class BabyAccount : CustomerAccount, IAccount
 {
-  decimal balance = 0;
 
-  public bool WithdrawFund(decimal amount)
+  public override bool WithdrawFund(decimal amount)
   {
     if (amount > 10)
     {
@@ -19,16 +18,6 @@ public class BabyAccount : IAccount
     balance -= amount;
 
     return true;
-  }
-
-  public void PayInFund(decimal amount)
-  {
-    balance += amount;
-  }
-
-  public decimal GetBalance()
-  {
-    return balance;
   }
 }
 
