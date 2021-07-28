@@ -6,11 +6,16 @@ class AccountClass
   private readonly string address;
   private readonly string name;
 
+
   public AccountClass(string inName, string inAddress, decimal inBalance)
   {
     name = inName;
     address = inAddress;
-    balance = inBalance;
+
+    if (SetBalance(inBalance) == false)
+    {
+      throw new Exception("Account construction failed: Balance cannot be less than zero");
+    }
   }
 
   public AccountClass(string inName, string inAddress) : this(inName, inAddress, 0)
@@ -21,6 +26,18 @@ class AccountClass
   public AccountClass(string inName) : this(inName, "Not Supplied", 0)
   {
 
+  }
+
+  public bool SetBalance(decimal inBalance)
+  {
+    if (inBalance < 0)
+    {
+      return false;
+    }
+
+    balance = inBalance;
+
+    return true;
   }
 
   public bool WithdrawFunds(decimal amount)
