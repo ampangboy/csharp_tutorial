@@ -36,7 +36,7 @@ public class CustomerAccount : IAccount
 
 public class SimpleInterface
 {
-  public static void Main()
+  public void Main()
   {
     IAccount account = new CustomerAccount();
     Console.WriteLine(account.GetBalance());
