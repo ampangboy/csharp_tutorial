@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class BabyAccount : CustomerAccount, IAccount
+public sealed class BabyAccount : Account
 {
 
   public override bool WithdrawFund(decimal amount)
@@ -10,14 +10,12 @@ public class BabyAccount : CustomerAccount, IAccount
       return false;
     }
 
-    if (balance < amount)
-    {
-      return false;
-    }
+    return base.WithdrawFund(amount);
+  }
 
-    balance -= amount;
-
-    return true;
+  public override string PrintRudeLetter()
+  {
+    return "Your parent suck";
   }
 }
 
@@ -25,7 +23,7 @@ public class UsingComponent
 {
   const int MAX_CUSTOMER = 10;
 
-  public static void Main()
+  public void Main()
   {
     IAccount[] accounts;
 
@@ -53,5 +51,7 @@ public class UsingComponent
     {
       Console.WriteLine("Windrawal Unsuccesful");
     }
+
+    Console.WriteLine(accounts[1].PrintRudeLetter());
   }
 }

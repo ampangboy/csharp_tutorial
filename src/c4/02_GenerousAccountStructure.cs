@@ -7,7 +7,7 @@
   Closed
 };
 
-struct Account
+struct AccountStructure
 {
   public AccountState State;
   public string Name;
@@ -21,7 +21,7 @@ class GenerousAccountStructure
 {
   public void Main()
   {
-    Account RobsAccount;
+    AccountStructure RobsAccount;
 
     RobsAccount.State = AccountState.Active;
     RobsAccount.Name = null;

@@ -5,11 +5,14 @@ public interface IAccount
   bool WithdrawFund(decimal amount);
   void PayInFund(decimal amount);
   decimal GetBalance();
+  string PrintRudeLetter();
 }
 
-public class CustomerAccount : IAccount
+public abstract class Account : IAccount
 {
-  protected decimal balance = 0;
+  private decimal balance = 0;
+
+  public abstract string PrintRudeLetter();
 
   public virtual bool WithdrawFund(decimal amount)
   {
@@ -34,11 +37,19 @@ public class CustomerAccount : IAccount
   }
 }
 
+public class CustomerAccount : Account
+{
+  public override string PrintRudeLetter()
+  {
+    return "You suck";
+  }
+}
+
 public class SimpleInterface
 {
   public void Main()
   {
-    IAccount account = new CustomerAccount();
+    CustomerAccount account = new CustomerAccount();
     Console.WriteLine(account.GetBalance());
   }
 }

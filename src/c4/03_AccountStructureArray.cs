@@ -2,7 +2,7 @@
 
 class AccountStructureArray
 {
-  private static void PrintAccount(Account a)
+  private static void PrintAccount(AccountStructure a)
   {
     Console.WriteLine("Name: {0}", a.Name);
     Console.WriteLine("State: {0}", a.State);
@@ -12,9 +12,9 @@ class AccountStructureArray
   public void Main()
   {
     const int MAX_CUST = 100;
-    Account[] Bank;
+    AccountStructure[] Bank;
 
-    Bank = new Account[MAX_CUST];
+    Bank = new AccountStructure[MAX_CUST];
     Bank[0].Name = "Rob";
     Bank[0].State = AccountState.Active;
     Bank[0].Balance = 100000;
