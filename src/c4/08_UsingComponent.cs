@@ -2,15 +2,20 @@
 
 public sealed class BabyAccount : Account
 {
+  public BabyAccount(string inName, decimal inBalance) : base(inName, inBalance)
+  {
 
-  public override bool WithdrawFund(decimal amount)
+  }
+
+
+  public override void WithdrawFund(decimal amount)
   {
     if (amount > 10)
     {
-      return false;
+      throw new Exception("Max amount allowed to be drawn is up to 10 dollar!");
     }
 
-    return base.WithdrawFund(amount);
+    base.WithdrawFund(amount);
   }
 
   public override string PrintRudeLetter()
@@ -28,29 +33,17 @@ public class UsingComponent
     IAccount[] accounts;
 
     accounts = new IAccount[MAX_CUSTOMER];
-    accounts[0] = new CustomerAccount();
-    accounts[1] = new BabyAccount();
+    accounts[0] = new CustomerAccount("Baby Umar", 0);
+    accounts[1] = new BabyAccount("Umar", 10);
 
     accounts[0].PayInFund(20);
     accounts[1].PayInFund(20);
 
-    if (accounts[0].WithdrawFund(20) == true)
-    {
-      Console.WriteLine("Windrawal Successful");
-    }
-    else
-    {
-      Console.WriteLine("Windrawal Unsuccesful");
-    }
+    accounts[0].WithdrawFund(20);
+    Console.WriteLine("Windrawal Successful");
 
-    if (accounts[1].WithdrawFund(20) == true)
-    {
-      Console.WriteLine("Windrawal Successful");
-    }
-    else
-    {
-      Console.WriteLine("Windrawal Unsuccesful");
-    }
+    accounts[1].WithdrawFund(20);
+    Console.WriteLine("Windrawal Successful");
 
     Console.WriteLine(accounts[1].PrintRudeLetter());
   }

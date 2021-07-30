@@ -30,12 +30,12 @@ public class Bank : IBank
 
 class BankProgram
 {
-  public static void Main()
+  public void Main()
   {
     IBank ourBank;
     AccountClass newAccount;
 
-    ourBank = new Bank();
+    ourBank = new DictionaryBank();
     newAccount = new AccountClass("Rob", "Rob's House", 100);
 
     if (ourBank.StoreAccount(newAccount) == true)
@@ -43,7 +43,7 @@ class BankProgram
       Console.WriteLine("The account added to the bank");
     }
 
-    if (ourBank.FindAccount("Rob") != null)
+    if (ourBank.FindAccount("Rob Miller") != null)
     {
       Console.WriteLine("Found the account!");
     }
