@@ -1,10 +1,10 @@
 ﻿using System;
 
-class AccountClass
+public class AccountClass
 {
   private decimal balance;
   private readonly string address;
-  private readonly string name;
+  public string name;
 
 
   public AccountClass(string inName, string inAddress, decimal inBalance)

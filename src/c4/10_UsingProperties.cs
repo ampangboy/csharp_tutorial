@@ -25,7 +25,7 @@ public class StaffMember
 
 public class UsingProperties
 {
-  public static void Main()
+  public void Main()
   {
     StaffMember staffMember;
 
