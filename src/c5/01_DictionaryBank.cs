@@ -1,26 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 class DictionaryBank : IBank
 {
-  readonly Dictionary<string, AccountClass> accountDictionary;
+  readonly Dictionary<string, CustomerAccount> accountDictionary;
 
   public DictionaryBank()
   {
-    accountDictionary = new Dictionary<string, AccountClass>();
+    accountDictionary = new Dictionary<string, CustomerAccount>();
   }
 
-  public bool StoreAccount(AccountClass newAccount)
+  public void StoreAccount(CustomerAccount newAccount)
   {
     if (accountDictionary.ContainsKey(newAccount.name))
     {
-      return false;
+      throw new Exception("Name already exists in the bank");
     }
 
     accountDictionary.Add(newAccount.name, newAccount);
-
-    return true;
   }
-  public AccountClass FindAccount(string name)
+
+  public CustomerAccount FindAccount(string name)
   {
     if (!accountDictionary.ContainsKey(name))
     {

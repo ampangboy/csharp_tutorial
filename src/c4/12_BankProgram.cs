@@ -3,8 +3,8 @@ using System.Collections;
 
 interface IBank
 {
-  public bool StoreAccount(AccountClass newAccount);
-  public AccountClass FindAccount(string name);
+  public void StoreAccount(CustomerAccount newAccount);
+  public CustomerAccount FindAccount(string name);
 }
 
 public class Bank : IBank
@@ -16,36 +16,35 @@ public class Bank : IBank
     BankHashTable = new Hashtable();
   }
 
-  public bool StoreAccount(AccountClass newAccount)
+  public void StoreAccount(CustomerAccount newAccount)
   {
     BankHashTable.Add(newAccount.name, newAccount);
-    return true;
   }
 
-  public AccountClass FindAccount(string name)
+  public CustomerAccount FindAccount(string name)
   {
-    return BankHashTable[name] as AccountClass;
+    return BankHashTable[name] as CustomerAccount;
   }
 }
 
 class BankProgram
 {
-  public void Main()
+  public static void Main()
   {
     IBank ourBank;
-    AccountClass newAccount;
+    CustomerAccount newAccount;
 
     ourBank = new DictionaryBank();
-    newAccount = new AccountClass("Rob", "Rob's House", 100);
+    newAccount = new CustomerAccount("Rob", 100);
 
-    if (ourBank.StoreAccount(newAccount) == true)
-    {
-      Console.WriteLine("The account added to the bank");
-    }
+    ourBank.StoreAccount(newAccount);
+    Console.WriteLine("The account added to the bank");
 
     if (ourBank.FindAccount("Rob Miller") != null)
     {
       Console.WriteLine("Found the account!");
     }
+
+    ourBank.Save
   }
 }

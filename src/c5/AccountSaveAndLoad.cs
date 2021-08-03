@@ -4,7 +4,7 @@ public class AccountSaveAndLoad
 {
   const string FILE_NAME = @"Test.text";
 
-  public static void Main()
+  public void Main()
   {
     IAccount test = new CustomerAccount("Rob", 1000);
 
