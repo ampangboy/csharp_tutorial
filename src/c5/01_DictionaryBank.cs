@@ -3,24 +3,24 @@ using System.Collections.Generic;
 
 class DictionaryBank : IBank
 {
-  readonly Dictionary<string, CustomerAccount> accountDictionary;
+  readonly Dictionary<string, IAccount> accountDictionary;
 
   public DictionaryBank()
   {
-    accountDictionary = new Dictionary<string, CustomerAccount>();
+    accountDictionary = new Dictionary<string, IAccount>();
   }
 
-  public void StoreAccount(CustomerAccount newAccount)
+  public void StoreAccount(IAccount newAccount)
   {
-    if (accountDictionary.ContainsKey(newAccount.name))
+    if (accountDictionary.ContainsKey(newAccount.GetName()))
     {
       throw new Exception("Name already exists in the bank");
     }
 
-    accountDictionary.Add(newAccount.name, newAccount);
+    accountDictionary.Add(newAccount.GetName(), newAccount);
   }
 
-  public CustomerAccount FindAccount(string name)
+  public IAccount FindAccount(string name)
   {
     if (!accountDictionary.ContainsKey(name))
     {

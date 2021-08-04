@@ -1,10 +1,18 @@
 ﻿using System;
+using System.IO;
 
-public sealed class BabyAccount : Account
+public class BabyAccount : CustomerAccount
 {
-  public BabyAccount(string inName, decimal inBalance) : base(inName, inBalance)
-  {
+  readonly string parentName;
 
+  public BabyAccount(string inName, decimal inBalance, string inParentName) : base(inName, inBalance)
+  {
+    parentName = inParentName;
+  }
+
+  public BabyAccount(TextReader inText) : base(inText)
+  {
+    parentName = inText.ReadLine();
   }
 
 
@@ -22,6 +30,12 @@ public sealed class BabyAccount : Account
   {
     return "Your parent suck";
   }
+
+  public override void Save(TextWriter textOut)
+  {
+    base.Save(textOut);
+    textOut.WriteLine(parentName);
+  }
 }
 
 public class UsingComponent
@@ -34,7 +48,7 @@ public class UsingComponent
 
     accounts = new IAccount[MAX_CUSTOMER];
     accounts[0] = new CustomerAccount("Baby Umar", 0);
-    accounts[1] = new BabyAccount("Umar", 10);
+    accounts[1] = new BabyAccount("Umar", 10, "Quyyum");
 
     accounts[0].PayInFund(20);
     accounts[1].PayInFund(20);

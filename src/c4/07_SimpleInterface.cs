@@ -7,12 +7,14 @@ public interface IAccount
   void PayInFund(decimal amount);
   decimal GetBalance();
   string PrintRudeLetter();
+  public string GetName();
   void Save(string filename);
+  void Save(TextWriter inText);
 }
 
 public abstract class Account : IAccount
 {
-  private decimal balance = 0;
+  protected decimal balance = 0;
   public string name;
 
   public Account(string inName, decimal inBalance)
@@ -21,7 +23,17 @@ public abstract class Account : IAccount
     balance = inBalance;
   }
 
+  public Account(TextReader inText)
+  {
+
+  }
+
   public abstract string PrintRudeLetter();
+
+  public string GetName()
+  {
+    return name;
+  }
 
   public virtual void WithdrawFund(decimal amount)
   {
@@ -43,12 +55,18 @@ public abstract class Account : IAccount
     return balance;
   }
 
-  public void Save(string filename)
+  public virtual void Save(string filename)
   {
     TextWriter textOut = new StreamWriter(filename);
     textOut.WriteLine(name);
     textOut.WriteLine(balance);
     textOut.Close();
+  }
+
+  public virtual void Save(TextWriter textOut)
+  {
+    textOut.WriteLine(name);
+    textOut.WriteLine(balance);
   }
 }
 
@@ -57,6 +75,12 @@ public class CustomerAccount : Account
   public CustomerAccount(string inName, decimal inBalance) : base(inName, inBalance)
   {
 
+  }
+
+  public CustomerAccount(TextReader inText) : base(inText)
+  {
+    name = inText.ReadLine();
+    balance = decimal.Parse(inText.ReadLine());
   }
 
   public override string PrintRudeLetter()
@@ -74,6 +98,26 @@ public class CustomerAccount : Account
     try
     {
       textIn = new StreamReader(filename);
+      nameText = textIn.ReadLine();
+      balanceText = textIn.ReadLine();
+      inBalance = decimal.Parse(balanceText);
+
+      return account = new CustomerAccount(nameText, inBalance);
+    }
+    catch
+    {
+      throw new Exception("Failed to load the file. The file probably didn't exist");
+    }
+  }
+
+  public static CustomerAccount Load(TextReader textIn)
+  {
+    CustomerAccount account;
+    string nameText, balanceText;
+    decimal inBalance;
+
+    try
+    {
       nameText = textIn.ReadLine();
       balanceText = textIn.ReadLine();
       inBalance = decimal.Parse(balanceText);
