@@ -68,7 +68,7 @@ public class Bank : IBank
 
 class BankProgram
 {
-  public static void Main()
+  public void Main()
   {
     Bank ourBank, loadBank;
     CustomerAccount newAccount;

@@ -8,6 +8,7 @@ public interface IAccount
   decimal GetBalance();
   string PrintRudeLetter();
   public string GetName();
+  public void SetName(string inName);
   void Save(string filename);
   void Save(TextWriter inText);
 }
@@ -33,6 +34,22 @@ public abstract class Account : IAccount
   public string GetName()
   {
     return name;
+  }
+
+  public void SetName(string inName)
+  {
+    string err;
+
+    err = CustomerAccount.ValidateName(inName);
+
+    if (err != "")
+    {
+
+      throw new Exception("Name is invalid, " + err);
+    }
+
+    inName = inName.Trim();
+    name = inName;
   }
 
   public virtual void WithdrawFund(decimal amount)
@@ -129,6 +146,24 @@ public class CustomerAccount : Account
       throw new Exception("Failed to load the file. The file probably didn't exist");
     }
   }
+
+  public static string ValidateName(string inName)
+  {
+    if (inName == null)
+    {
+      return "Name parameter null";
+    }
+
+    inName = inName.Trim();
+    if (inName == "")
+    {
+      return "No text in the name";
+    }
+
+    return "";
+  }
+
+
 }
 public class SimpleInterface
 {
